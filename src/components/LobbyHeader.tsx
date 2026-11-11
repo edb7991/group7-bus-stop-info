@@ -56,14 +56,18 @@ export function LobbyHeader({
   useEffect(() => {
     if (isPaused) return;
 
+    let currentSeconds = autoRefreshInterval;
+    setSecondsUntilRefresh(autoRefreshInterval);
+
     const interval = setInterval(() => {
-      setSecondsUntilRefresh((prev) => {
-        if (prev <= 1) {
-          onManualRefresh();
-          return autoRefreshInterval;
-        }
-        return prev - 1;
-      });
+      currentSeconds -= 1;
+      if (currentSeconds <= 0) {
+        currentSeconds = autoRefreshInterval;
+        setSecondsUntilRefresh(autoRefreshInterval);
+        onManualRefresh();
+      } else {
+        setSecondsUntilRefresh(currentSeconds);
+      }
     }, 1000);
 
     return () => clearInterval(interval);
