@@ -1,0 +1,6 @@
+{
+  "name": "SMU Transit Lobby - Real-Time Bus Monitor & Run Calculator",
+  "description": "Real-time side-by-side lobby transit screen for all bus stops surrounding Singapore Management University (SMU), featuring live countdowns, walking time estimators, and run vs. walk urgency indicators.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
