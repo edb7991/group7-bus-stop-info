@@ -3,8 +3,9 @@ import { createServer as createViteServer } from 'vite';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
-import healthHandler from './api/health.ts';
-import nextBusHandler from './api/nextbus.ts';
+import healthHandler from './api/health.js';
+import busHandler from './api/bus.js';
+import feedHandler from './api/feed.js';
 
 // Load environment variables (.env)
 dotenv.config();
@@ -22,8 +23,9 @@ async function startServer() {
   app.use(express.json());
 
   // Mount API Endpoints in /api
+  app.get('/api/feed', feedHandler);
   app.get('/api/health', healthHandler);
-  app.get(['/api/nextbus', '/api/next-bus', '/api/next bus', '/api/next%20bus', '/api/BusArrival'], nextBusHandler);
+  app.get(['/api/bus', '/api/nextbus', '/api/next-bus', '/api/next bus', '/api/next%20bus', '/api/BusArrival'], busHandler);
 
   // Fallback info for /api
   app.get('/api', (req, res) => {
