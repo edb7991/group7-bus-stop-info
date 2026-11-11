@@ -43,6 +43,7 @@ async function startServer() {
         middlewareMode: true,
         host: '0.0.0.0',
         port: PORT,
+        hmr: process.env.DISABLE_HMR !== 'true' ? true : false,
       },
       appType: 'spa',
     });
